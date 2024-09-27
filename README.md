@@ -1,2 +1,2 @@
-# e-commerce-store
-an E-commerce website using React, Vite, tailwind, Daisy
+# e-commerce-playgr
+creating a simple e-commerce webpage(s) using React and React Route
