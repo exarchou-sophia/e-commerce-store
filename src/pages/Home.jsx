@@ -1,4 +1,5 @@
 // import Filter from "../components/Filter";
+import { ProductCard } from "../components/ProductCard";
 import FetchApi from "../Utils/FetchApi";
 import React, { useState } from "react";
 
@@ -13,7 +14,7 @@ const products2 = [
 const products = JSON.parse(localStorage.getItem("productData")) || [];
 const Home = () => {
     const [filter, setFilter] = useState("all");
-    const filteredProducts = products.filter((item) =>
+    const filteredProducts = products.filter(item =>
         filter === "all" ? true : item.category === filter
     );
 
@@ -21,26 +22,25 @@ const Home = () => {
         <>
             <div>
                 <FetchApi />
-                <div className="filters">
-            <button onClick={() => setFilter("all")}>All</button>
-            <button onClick={() => setFilter("men's clothing")}>Men's Clothes</button>
-            <button onClick={() => setFilter("jewelery")}>Jewelery</button>
-            <button onClick={() => setFilter("electronics")}>Tech</button>
-            <button onClick={() => setFilter("women's clothing")}>Women's Clothing</button>
-        </div>
-                
-                <div className="product-grid">
+                <div className="filters flex justify-around mx-4 p-4">
+                    <button onClick={() => setFilter("all")}>All</button>
+                    <button onClick={() => setFilter("men's clothing")}>
+                        Men's Clothes
+                    </button>
+                    <button onClick={() => setFilter("jewelery")}>
+                        Jewelery
+                    </button>
+                    <button onClick={() => setFilter("electronics")}>
+                        Tech
+                    </button>
+                    <button onClick={() => setFilter("women's clothing")}>
+                        Women's Clothing
+                    </button>
+                </div>
+
+                <div className="product-grid grid grid-cols-4 gap-4">
                     {filteredProducts.map(item => (
-                        <div key={item.id} className="product-card">
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                            />
-                            <h3>{item.title}</h3>
-                            <p>{item.price}</p>
-                            <p>{item.description}</p>
-                            <p>{item.category}</p>
-                        </div>
+                        <ProductCard key={item.id} {...item}/>
                     ))}
                 </div>
             </div>
