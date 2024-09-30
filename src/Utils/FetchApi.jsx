@@ -5,6 +5,7 @@ const fetchProductData = async () => {
         const response = await fetch('https://fakestoreapi.com/products');
         const data = await response.json();
         localStorage.setItem('productData', JSON.stringify(data));
+        console.log(data);
     } catch (error) {
         console.error('Error fetching product data:', error);
     }
