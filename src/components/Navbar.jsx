@@ -7,14 +7,16 @@ const Navbar = () => {
             <div className="navbar bg-base-100">
                 <div className="flex-1">
                     <Link to="/">
-                        <a className="btn btn-ghost text-xl">
+                        <span className="btn btn-ghost text-xl">
                             E-COMMERCE-STORE
-                        </a>
+                        </span>
                     </Link>
                 </div>
                 <div className="flex-none">
                     <Link to="/">
-                        <a className="btn btn-ghost text-xl mr-10">HOME</a>
+                        <span className="btn btn-ghost text-xl mr-10">
+                            HOME
+                        </span>
                     </Link>
 
                     <div className="dropdown dropdown-end">
