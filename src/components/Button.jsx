@@ -10,3 +10,26 @@ export const Button = props => (
         {props.title}
     </button>
 );
+
+export const ButtonUsageExample = () => (
+    <div>
+        {/* example one */}
+        <Button
+            style={{
+                backgroundColor: "red"
+            }}
+            title="send data"
+        />
+
+        {/* example two with click action */}
+        <Button
+            style={{
+                color: "white"
+            }}
+            title="send data"
+            onClicked={() => {
+                console.log("I was pressed");
+            }}
+        />
+    </div>
+)
