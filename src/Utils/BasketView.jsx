@@ -46,7 +46,7 @@ export const readAllBasketItems = () => Object
 export const BasketView = () => {
     const [basketItems, setBasketItems] = useState([])
 
-    // we get the baketItems from local storage & we make sure this runs only once 
+    // we get the basketItems from local storage & we make sure this runs only once 
     //we call the function readAllBasketItems which 
     //retrieves, parses and returns items as array
     useEffect(() => {
