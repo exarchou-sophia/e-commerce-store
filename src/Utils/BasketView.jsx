@@ -38,7 +38,7 @@ export const removeItemFromStorageById = id => localStorage.removeItem(id);
 //here we create a function which "reads" (as in CRUD) all the keys from local storage
 //as array of strings, and after this we iterate over each key and call 
 //the function  readBasketItemFromStorageById which has already parsed the items.
-const readAllBasketItems = () => Object
+export const readAllBasketItems = () => Object
     .keys(localStorage)
     .map(key => readBasketItemFromStorageById(key))
 
