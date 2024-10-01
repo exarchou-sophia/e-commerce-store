@@ -1,20 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const Filter = () => {
-    const [filter, setFilter] = useState("all");
-
+const Filter = ({setFilter}) => {
+    // const [filter, setFilter] = useState("all");
     const handleFilterClick = (category) => {
         setFilter(category);
-        onFilterChange(category);
-
-    // const filteredProducts = products.filter(item =>
-    //     filter === "all" ? true : item.category === filter
-    // );
+    }
   return (
                 <div className="filters flex justify-around mx-4 p-4">
                     <button onClick={() => handleFilterClick("all")}>All</button>
                     <button onClick={() => handleFilterClick("men's clothing")}>
-                        Men's Clothes
+                        Men&apos;s Clothes
                     </button>
                     <button onClick={() => handleFilterClick("jewelery")}>
                         Jewelery
@@ -23,12 +18,9 @@ const Filter = () => {
                         Tech
                     </button>
                     <button onClick={() => handleFilterClick("women's clothing")}>
-                        Women's Clothing
+                        Women&apos;s Clothing
                     </button>
                 </div>
   )
 }
-
-export default Filter
-
-// not ready yet
+export default Filter;
