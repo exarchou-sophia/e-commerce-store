@@ -4,7 +4,7 @@ import { ProductCard } from "../components/ProductCard";
 
 //first we check if basket has items and then we get them
 //if so we parse them , otherwise we do nothing
-const readBasketItemFromStorageById = id => {
+export const readBasketItemFromStorageById = id => {
     const itemStr = localStorage.getItem(id);
 
     if (itemStr) {
@@ -16,8 +16,8 @@ const readBasketItemFromStorageById = id => {
 
 //next we want to add item to local storage so 
 //if item is already stored then we add +1 , otherwise we add 1 item
-const addBasketItemToStorage = item => {
-    const alreadyStoredItem = localStorage.getItem(item.id);
+export const addBasketItemToStorage = item => {
+    const alreadyStoredItem = readBasketItemFromStorageById(item.id);
 
     if (alreadyStoredItem) {
         localStorage.setItem(item.id, JSON.stringify({
@@ -33,7 +33,7 @@ const addBasketItemToStorage = item => {
 }
 
 //then we want to remove items from local storage so we create this function
-const removeItemFromStorageById = id => localStorage.removeItem(id);
+export const removeItemFromStorageById = id => localStorage.removeItem(id);
 
 //here we create a function which "reads" (as in CRUD) all the keys from local storage
 //as array of strings, and after this we iterate over each key and call 
