@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import BasketPage from "./pages/BasketPage";
 import { getInitialBasket } from "./Utils/CartUtils";
+import Hero from "./components/Hero";
 
 const App = () => {
     const [Basket, setBasket] = useState(getInitialBasket());
@@ -12,8 +13,9 @@ const App = () => {
         <Router>
             <Navbar />
             <Routes>
+                <Route path="/" element={<Hero />} />
                 <Route
-                    path="/"
+                    path="/Home"
                     element={<Home Basket={Basket} setBasket={setBasket} />}
                 />
                 <Route
