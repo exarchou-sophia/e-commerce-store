@@ -1,23 +1,89 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+        console.log(isMenuOpen ? "Menu open" : "not menu open");
+    };
+
+    const closeMenu = () => {
+        setIsOpen(false);
+    };
+
     return (
         <>
             <div className="navbar bg-base-100">
                 <div className="flex-1">
                     <Link to="/">
-                        <span className="btn btn-ghost text-xl">
+                        <span className="btn btn-ghost normal-case text-xl">
                             E-COMMERCE-STORE
                         </span>
                     </Link>
                 </div>
-                <div className="flex-none">
-                    <Link to="/">
-                        <span className="btn btn-ghost text-xl mr-10">
-                            HOME
-                        </span>
-                    </Link>
+
+                {/* Hamburger Menu for Small Screens */}
+                <div className="flex-none lg:hidden">
+                    <button
+                        onClick={toggleMenu}
+                        className="btn btn-ghost btn-circle"
+                        aria-label="Menu"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            className="inline-block w-6 h-6"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M4 6h16M4 12h16m-7 6h7"
+                            />
+                        </svg>
+                    </button>
+                </div>
+                {/* Popup menu for mobile view */}
+                {isMenuOpen && (
+                    <ul className="lg:hidden menu bg-base-200 absolute left-1/2 transform -translate-x-1/2 mt-2 w-56 rounded-lg shadow-lg border border-gray-300">
+                        <li>
+                            <Link
+                                to="/home"
+                                className="block "
+                                onClick={closeMenu}
+                            >
+                                HOME
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/BasketPage"
+                                className="block "
+                                onClick={closeMenu}
+                            >
+                                BASKET
+                            </Link>
+                        </li>
+                    </ul>
+                )}
+
+                {/* Links for Larger Screens */}
+                <div className="hidden lg:flex flex-none">
+                    <div className="flex justify-between space-x-4">
+                        <Link to="/home">
+                            <span className="btn btn-ghost text-lg">HOME</span>
+                        </Link>
+                        <Link to="/BasketPage">
+                            <span className="btn btn-ghost text-lg">
+                                BASKET
+                            </span>
+                        </Link>
+                    </div>
 
                     <div className="dropdown dropdown-end">
                         <div
@@ -70,7 +136,6 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-black h-2 mt-2"></div>
         </>
     );
 };
