@@ -8,7 +8,13 @@ export const ProductCard = (item) => (
             <p>{item.price}€</p>
             <p>{item.description}</p>
             <p>{item.category}</p>
-            <Button title="Add to Cart"/>
+            <Button title="Add to Cart" onClick={() => addToCart(item)}/>
         </div>
     </div>
 )
+
+const addToCart = (item) => {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+};
