@@ -59,9 +59,11 @@ export const ProductCard = (item) => {
             <p className="font-">{item.description}</p>
             <p>{item.category}</p>
             {isClicked ?
-            (<> <Button title="-" onClick={handleDecrement} />
+            (<div className="flex"> 
+            <Button className="btn btn-outline btn-success" title="+" onClick={handleIncrement} /> 
             <span>{productQuantity}</span>
-            <Button title="+" onClick={handleIncrement} /> </>) :
+            <Button className="btn btn-outline btn-success" title="-" onClick={handleDecrement} />
+            </div>) :
             (<Button title="Add to Basket" className="btn btn-outline btn-success" onClick={() => (addToBasket(item), setIsClicked(true))} />)}
         </div>
     </div>
