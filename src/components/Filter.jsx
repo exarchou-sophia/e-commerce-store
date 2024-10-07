@@ -1,25 +1,21 @@
 import React, {useState} from 'react'
+import { Button2 } from './Button';
 
 const Filter = ({setFilter}) => {
-    // const [filter, setFilter] = useState("all");
     const handleFilterClick = (category) => {
         setFilter(category);
     }
   return (
                 <div className="filters flex justify-around mx-4 p-4">
-                    <button onClick={() => handleFilterClick("all")}>All</button>
-                    <button onClick={() => handleFilterClick("men's clothing")}>
-                        Men&apos;s Clothes
-                    </button>
-                    <button onClick={() => handleFilterClick("jewelery")}>
-                        Jewelery
-                    </button>
-                    <button onClick={() => handleFilterClick("electronics")}>
-                        Tech
-                    </button>
-                    <button onClick={() => handleFilterClick("women's clothing")}>
-                        Women&apos;s Clothing
-                    </button>
+                    <Button2 className="bg-white" title="All" onClick={() => handleFilterClick("all")}>All</Button2>
+                    <Button2 className="" title="Men&apos;s Clothes" onClick={() => handleFilterClick("men's clothing")}>
+                    </Button2>
+                    <Button2 className="bg-orange-400" title="Jewelery" onClick={() => handleFilterClick("jewelery")}>
+                    </Button2>
+                    <Button2 className=" bg-green-500" title="Tech" onClick={() => handleFilterClick("electronics")}>
+                    </Button2>
+                    <Button2 className=" bg-pink-500" title="Women&apos;s Clothing" onClick={() => handleFilterClick("women's clothing")}>
+                    </Button2>
                 </div>
   )
 }
