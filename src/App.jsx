@@ -6,6 +6,7 @@ import BasketPage from "./pages/BasketPage";
 import { getInitialBasket } from "./Utils/CartUtils";
 import Hero from "./components/Hero";
 import ProductProvider from "./context/ProductContext";
+import Footer from "./components/Footer";
 
 const App = () => {
     const [Basket, setBasket] = useState(getInitialBasket());
@@ -27,6 +28,7 @@ const App = () => {
                         }
                     />
                 </Routes>
+                <Footer />
             </Router>
         </ProductProvider>
     );
