@@ -1,33 +1,69 @@
-import {useContext} from 'react'
+import {useContext, useState, useEffect} from 'react';
 import { Button } from "./Button";
 import {ProductContext} from '../context/ProductContext';
 
 export const ProductCard = (item) => {
-    const { addToBasket } = useContext(ProductContext);
-    return(
+    const { addToBasket, incrementProduct, decrementProduct, setBasket } = useContext(ProductContext);
+    const [isClicked, setIsClicked] = useState(false);
+    const [productQuantity, setProductQuantity] = useState(0);
+
+    useEffect(() => {
+        if (productQuantity === 0) {
+            setIsClicked(false);
+        }
+    }, [productQuantity]);
+
+    useEffect(() => {
+        const storedBasket = JSON.parse(localStorage.getItem('basket')) || [];
+        const productInBasket = storedBasket.find(product => product.id === item.id);
+        if (productInBasket) {
+            setProductQuantity(productInBasket.quantity);
+            setIsClicked(true);
+        }
+    }, [item.id]);
+
+    const handleIncrement = () => {
+        incrementProduct(item);
+        setProductQuantity(prevQuantity => {
+            const newQuantity = prevQuantity + 1;
+            updateBasketQuantity(newQuantity);
+            return newQuantity;
+        });
+    };
+
+    const handleDecrement = () => {
+        decrementProduct(item);
+        setProductQuantity(prevQuantity => {
+            const newQuantity = prevQuantity - 1;
+            updateBasketQuantity(newQuantity);
+            return newQuantity;
+        });
+    };
+
+    const updateBasketQuantity = (newQuantity) => {
+        setBasket(prevBasket => {
+            const updatedBasket = prevBasket.map(product => 
+                product.id === item.id ? { ...product, quantity: newQuantity } : product
+            );
+            localStorage.setItem('basket', JSON.stringify(updatedBasket));
+            return updatedBasket;
+        });
+    };
+
+    return (
     <div key={item.id} className="product-card card bg-base-100 w-auto shadow-xl p-4">
         <img className="rounded max-h-[40%] max-w-[40%] m-auto justify-around" src={item.image} alt={item.title} />
         <div className="card-body">
             <h3 className="card-title">{item.title}</h3>
             <p className="font-bold">{item.price}€</p>
-            <p className="font-light">{item.description}</p>
+            <p className="font-">{item.description}</p>
             <p>{item.category}</p>
-            <Button className="btn btn-outline btn-success" title="Add to Cart" onClick={() => addToBasket(item)}/>
+            {isClicked ?
+            (<> <Button title="-" onClick={handleDecrement} />
+            <span>{productQuantity}</span>
+            <Button title="+" onClick={handleIncrement} /> </>) :
+            (<Button title="Add to Basket" className="btn btn-outline btn-success" onClick={() => (addToBasket(item), setIsClicked(true))} />)}
         </div>
     </div>
-);}
-
-<div className="card card-side bg-base-100 shadow-xl">
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-      alt="Movie" />
-  </figure>
-  <div className="card-body">
-    <h2 className="card-title">New movie is released!</h2>
-    <p>Click the button to watch on Jetflix app.</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Watch</button>
-    </div>
-  </div>
-</div>
+    );
+}
