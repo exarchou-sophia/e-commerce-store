@@ -5,7 +5,7 @@ import {ProductContext} from '../context/ProductContext';
 export const ProductCard = (item) => {
     const { addToBasket, incrementProduct, decrementProduct, setBasket } = useContext(ProductContext);
     const [isClicked, setIsClicked] = useState(false);
-    const [productQuantity, setProductQuantity] = useState(0);
+    const [productQuantity, setProductQuantity] = useState(1);
 
     useEffect(() => {
         if (productQuantity === 0) {
@@ -32,12 +32,14 @@ export const ProductCard = (item) => {
     };
 
     const handleDecrement = () => {
-        decrementProduct(item);
-        setProductQuantity(prevQuantity => {
-            const newQuantity = prevQuantity - 1;
-            updateBasketQuantity(newQuantity);
-            return newQuantity;
-        });
+        if (productQuantity > 1) {
+            decrementProduct(item);
+            setProductQuantity(prevQuantity => {
+                const newQuantity = prevQuantity - 1;
+                updateBasketQuantity(newQuantity);
+                return newQuantity;
+            });
+        }
     };
 
     const updateBasketQuantity = (newQuantity) => {
