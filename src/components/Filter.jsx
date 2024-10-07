@@ -1,4 +1,3 @@
-import React, {useState} from 'react'
 import { Button2 } from './Button';
 
 const Filter = ({setFilter}) => {

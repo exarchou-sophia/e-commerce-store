@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 // Create the ProductContext
 export const ProductContext = createContext();
@@ -74,6 +74,7 @@ const ProductProvider = ({ children }) => {
         <ProductContext.Provider
             value={{
                 basket,
+                setBasket,
                 addToBasket,
                 incrementProduct,
                 decrementProduct,
