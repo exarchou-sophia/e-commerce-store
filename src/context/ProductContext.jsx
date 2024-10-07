@@ -70,6 +70,14 @@ const ProductProvider = ({ children }) => {
         saveBasketToLocalStorage(updatedBasket);
     };
     /* ---------------------------------------------------------------- */
+    // i added these to get the quantity of a product and amount to use in the Navbar
+    const totalQuantity = basket.reduce((acc, item) => acc + item.quantity, 0);
+    const totalAmount = basket.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0
+    );
+
+    /* ---------------------------------------------------------------- */
     return (
         <ProductContext.Provider
             value={{
@@ -79,6 +87,8 @@ const ProductProvider = ({ children }) => {
                 incrementProduct,
                 decrementProduct,
                 deleteProduct,
+                totalQuantity, // i added these to get the quantity and amount to use in the Navbar
+                totalAmount, // i added these to get the quantity and amount to use in the Navbar
             }}
         >
             {children}
